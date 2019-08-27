@@ -19,20 +19,17 @@ grad = zeros(size(theta));
 %
 % Note: grad should have the same dimensions as theta
 %
-
-  X = [ones(size(X,1),1) X]; % insert ones for theta0 
-  costSum = 0;
-  for i=1 : m
-    %theta1
-    hx = theta' * X^; % matrix multiplication
-    costSum = costSum + (-y(i)*log(hx) - (1-y(i))*log(1-hx));
+  hx = sigmoid(X * theta); % matrix multiplication
+  J = -1/m*((y' * log(hx)) + (1-y)'*log(1-hx));
+  
+ % for i=1 : m
+  %  %theta1
+   %
+ %   costSum = costSum + (-y(i)*log(hx) - (1-y(i))*log(1-hx));
     
-  endfor
+  %endfor
 
-J = costSum/m;
-
-
-
+%J = costSum/m; % deneme
+grad = (1/m)*(hx - y)'*X;
 % =============================================================
-
 end
